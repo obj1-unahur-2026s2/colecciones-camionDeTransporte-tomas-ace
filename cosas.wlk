@@ -1,10 +1,12 @@
 object knightRider {
     method peso() = 500
     method peligrosidad() = 10 
+    method bultos()=1
 }
 object bumblebee {
     method peso() = 800
     method peligrosidad() = 10 
+    method bultos() = 2 
 }
 object paqueteDeLAdrillos {
     var cantidadLadrilos = 10
@@ -16,6 +18,7 @@ object paqueteDeLAdrillos {
     }
     method peso() = 2*cantidadLadrilos
     method peligrosidad() = 12
+    method bultos() = if(cantidadLadrilos <= 100) 1 else if(cantidadLadrilos<=300) 2 else 3 
 }
 object arenaAGranel {
     var peso = 10
@@ -26,6 +29,7 @@ object arenaAGranel {
       peso-=nro
     }
     method peligrosidad() = 1 
+    method bultos()=1
 }
 object bateriaAntiaerea {
     var misiles=true
@@ -37,12 +41,13 @@ object bateriaAntiaerea {
     }
     method peso() = if(misiles)300 else 200
     method peligrosidad() = if(misiles)100 else 0
+    method bultos() = if(misiles)2 else 1
 }
 object contenedorPortuario {
     const cosas=[]
     method peso() = 100+cosas.sum{cosa=>cosa.peso()}
     method peligrosidad() = cosas.max({cosa=>cosa.peligrosidad()},{0})
-
+    method bultos() =1+cosas.sum{cosa=>cosa.bultos()} 
 }
 object residuosRadioactivos {
     var peso = 10
@@ -53,6 +58,7 @@ object residuosRadioactivos {
       peso-=nro
     }
     method peligrosidad() = 200
+    method bultos()=1
 }
 object embalajeDeSeguridad {
     var contenido = contenedorPortuario
@@ -61,4 +67,5 @@ object embalajeDeSeguridad {
     }
     method peso() = contenido.peso()
     method peligrosidad() = 10 
+    method bultos() = 2 
 }
