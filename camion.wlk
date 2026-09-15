@@ -7,7 +7,7 @@ object camion {
       carga.remove(cosa)
     }
     method peso()=1000+carga.sum{cosa=>cosa.peso()}
-    method sonTodosPares() = carga.all{cosa=>cosa.peso()%2==0} 
+    method sonTodosPares() = carga.all{cosa=>cosa.even()}  
     method cosaPesa(peso) = carga.any{cosa=>cosa.peso()==peso}
     method primeraCosaPeligrosa(nivel) = carga.find{cosa=>cosa.peligrosidad()>=nivel}
     method cosasPeligrosas(nivel) = carga.filter{cosa=>cosa.peligrosidad()>=nivel}
