@@ -1,3 +1,17 @@
 object camion {
-
+    const carga=[]
+    method cargar(cosa) {
+      carga.add(cosa)
+    }
+    method descargar(cosa) {
+      carga.remove(cosa)
+    }
+    method peso()=1000+carga.sum{cosa=>cosa.peso()}
+    method sonTodosPares() = carga.all{cosa=>cosa.peso()%2==0} 
+    method cosaPesa(peso) = carga.any{cosa=>cosa.peso()==peso}
+    method primeraCosaPeligrosa(nivel) = carga.find{cosa=>cosa.peligrosidad()>=nivel}
+    method cosasPeligrosas(nivel) = carga.filter{cosa=>cosa.peligrosidad()>=nivel}
+    method masPeligrosoQue(cosaPeligrosa) = carga.filter{cosa=>cosa.peligrosidad()>cosaPeligrosa.peligrosidad()}
+    method estaExcedido() =self.peso()>2500
+    method puedeCircular(nivelMaximo) = self.estaExcedido() or carga.all{cosa=>cosa.peligrosidad()<nivelMaximo}  
 }
