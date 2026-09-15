@@ -3,11 +3,19 @@ object knightRider {
     method peligrosidad() = 10 
     method bultos()=1
 }
+
+object auto{method peligrosidad() = 15}
+object robot {method peligrosidad() = 30}
 object bumblebee {
+    var estado = robot
+    method cambiarEstado(nuevoEstado){
+        estado=nuevoEstado
+    }
     method peso() = 800
-    method peligrosidad() = 10 
+    method peligrosidad() = estado.peligrosidad() 
     method bultos() = 2 
 }
+
 object paqueteDeLAdrillos {
     var cantidadLadrilos = 10
     method agregarLAdrillos(nro) {
@@ -22,6 +30,7 @@ object paqueteDeLAdrillos {
 }
 object arenaAGranel {
     var peso = 10
+    method peso() = peso
     method aumentarPeso(nro) {
       peso+=nro
     }
@@ -66,6 +75,6 @@ object embalajeDeSeguridad {
       contenido=nuevoContenido
     }
     method peso() = contenido.peso()
-    method peligrosidad() = 10 
+    method peligrosidad() = contenido.peligrosidad()/2 
     method bultos() = 2 
 }
